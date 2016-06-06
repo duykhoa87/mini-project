@@ -1,0 +1,61 @@
+<div class="row padding-top-20">
+    <div class="col-md-8"><p class="title-text">Home</p></div>
+
+    <div class="col-md-4">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for..." ng-model="event.search">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" ng-click="search()">Go!</button>
+      </span>
+        </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+</div>
+<hr>
+<div class="row title-list">
+    <div class="col-md-5">List of Events</div>
+    <div class="col-md-7 text-right">
+        <button class="btn btn-primary" ui-sref="add-event"><i class="fa fa-plus" aria-hidden="true"></i> Add Event</button>
+    </div>
+</div>
+<div class="row">
+    <div class="table-responsive col-md-12 table-list">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>Description</th>
+                <th>Event Date</th>
+                <th>Venue</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="(key, event) in events">
+                <td>{{ event.name }}</td>
+                <td ng-bind-html="event.description | html"></td>
+                <td>{{ event.date | date:'fullDate' }} <br/>
+                    {{ event.time | date:'shortTime' }}
+                </td>
+                <td>{{ event.venue }}</td>
+                <td>
+                    <i class="fa fa-pencil-square-o fa-2 margin-right-5" aria-hidden="true" ui-sref="edit-event({eventId: event._id})"></i>
+                    <i class="fa fa-trash-o fa-2" aria-hidden="true" ng-click="confirmDelete(key)"></i>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Waring</h3>
+    </div>
+    <div class="modal-body">
+        Are you sure to delete this item?
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
+<button class="btn btn-danger" ng-click="logout()">Logout</button>

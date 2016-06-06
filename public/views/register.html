@@ -1,0 +1,27 @@
+<div class="col-sm-4 col-sm-offset-4">
+    <div class="form-group">
+        <img src="../assets/images/logo.jpg" class="logo">
+    </div>
+    <form>
+        <div class="alert alert-danger" ng-if="error">
+            <ul>
+                <li ng-repeat="eText in errorText"> {{ eText }}</li>
+            </ul>
+        </div>
+        <div class="form-group">
+            <input type="name" class="form-control" placeholder="Name" ng-model="newUser.name">
+        </div>
+        <div class="form-group">
+            <input type="email" class="form-control" placeholder="Email" ng-model="newUser.email">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password" ng-model="newUser.password">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="Confirm Password" ng-model="newUser.password_confirmation">
+        </div>
+        <button class="btn btn-custom" ng-click="register()">Sign up for Free</button>
+    </form>
+    <br/>
+    <p>Have an account already. <a ui-sref="login" class="sys-color" >Log in to Dashboard</a></p>
+</div>
